@@ -4,46 +4,46 @@ CREATE DATABASE IF NOT EXISTS club_java;
 USE club_java;
 
 -- Crear la tabla Usuario
-CREATE TABLE IF NOT EXISTS usuario (
+CREATE TABLE IF NOT EXISTS "user" (
                                        id INT PRIMARY KEY AUTO_INCREMENT,
-                                       nombre_usuario VARCHAR(255) NOT NULL,
-                                       correo_electronico VARCHAR(255) NOT NULL,
-                                       contrasena VARCHAR(255) NOT NULL,
-                                       rol VARCHAR(20) CHECK (rol IN ('administrador', 'autor', 'lector'))
+                                       user_name VARCHAR(255) NOT NULL,
+                                       email VARCHAR(255) NOT NULL,
+                                       password VARCHAR(255) NOT NULL,
+                                       "role" VARCHAR(20) CHECK (rol IN ('administrador', 'autor', 'lector'))
 );
 
 -- Crear la tabla Publicacion
-CREATE TABLE IF NOT EXISTS publicacion (
+CREATE TABLE IF NOT EXISTS post (
                                            id INT PRIMARY KEY AUTO_INCREMENT,
-                                           titulo VARCHAR(255) NOT NULL,
-                                           contenido TEXT NOT NULL,
-                                           fecha_publicacion DATE NOT NULL,
-                                           autor_id INT,
-                                           FOREIGN KEY (autor_id) REFERENCES usuario(id)
+                                           tittle VARCHAR(255) NOT NULL,
+                                           body TEXT NOT NULL,
+                                           post_date DATE NOT NULL,
+                                           author_id INT,
+                                           FOREIGN KEY (author_id) REFERENCES "user"(id)
 );
 
 -- Crear la tabla Comentario
-CREATE TABLE IF NOT EXISTS comentario (
+CREATE TABLE IF NOT EXISTS comment (
                                           id INT PRIMARY KEY AUTO_INCREMENT,
-                                          contenido TEXT NOT NULL,
-                                          fecha_comentario DATE NOT NULL,
-                                          autor_id INT,
-                                          publicacion_id INT,
-                                          FOREIGN KEY (autor_id) REFERENCES usuario(id),
-                                          FOREIGN KEY (publicacion_id) REFERENCES publicacion(id)
+                                          body TEXT NOT NULL,
+                                          comment_date DATE NOT NULL,
+                                          author_id INT,
+                                          post_id INT,
+                                          FOREIGN KEY (author_id) REFERENCES "user"(id),
+                                          FOREIGN KEY (post_id) REFERENCES post(id)
 );
 
 -- Crear la tabla Etiqueta
-CREATE TABLE IF NOT EXISTS etiqueta (
+CREATE TABLE IF NOT EXISTS tag (
                                         id INT PRIMARY KEY AUTO_INCREMENT,
-                                        nombre VARCHAR(255) NOT NULL
+                                        "name" VARCHAR(255) NOT NULL
 );
 
 -- Crear la tabla intermedia para la relación muchos a muchos entre Publicacion y Etiqueta
-CREATE TABLE IF NOT EXISTS publicacion_etiqueta (
+CREATE TABLE IF NOT EXISTS post_tag (
                                                     id INT PRIMARY KEY AUTO_INCREMENT,
-                                                    publicacion_id INT,
-                                                    etiqueta_id INT,
-                                                    FOREIGN KEY (publicacion_id) REFERENCES publicacion(id),
-                                                    FOREIGN KEY (etiqueta_id) REFERENCES etiqueta(id)
+                                                    post_id INT,
+                                                    tag_id INT,
+                                                    FOREIGN KEY (post_id) REFERENCES post(id),
+                                                    FOREIGN KEY (tag_id) REFERENCES tag(id)
 );

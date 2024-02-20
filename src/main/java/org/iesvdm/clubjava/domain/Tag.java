@@ -1,5 +1,6 @@
 package org.iesvdm.clubjava.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,14 +15,16 @@ import java.util.Set;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Etiqueta {
+public class Tag {
 
-    // Atributos
+    // Props
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
-    private String nombre;
-    @ManyToMany(mappedBy = "etiquetas")
-    private Set<Publicacion> publicaciones = new HashSet<>();
+    private String name;
+    // Relationships
+    @ManyToMany(mappedBy = "tags")
+    @JsonIgnore
+    private Set<Post> Posts = new HashSet<>();
 }

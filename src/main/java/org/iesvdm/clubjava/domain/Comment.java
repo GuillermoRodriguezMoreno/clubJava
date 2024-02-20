@@ -14,19 +14,19 @@ import java.util.Date;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Comentario {
+public class Comment {
 
-    // Atributos
+    // Props
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
-    private String contenido;
-    @JsonFormat(pattern = "yyyy-MM-dd-HH:mm:ss",  shape = JsonFormat.Shape.STRING)
-    private Date fecha_comentario;
-    // Relaciones
+    private String body;
+    @JsonFormat(pattern = "dd-MM-yyyy-HH:mm",  shape = JsonFormat.Shape.STRING)
+    private Date commentDate;
+    // Relationships
     @ManyToOne()
-    private Usuario autor;
+    private User author;
     @ManyToOne()
-    private Publicacion publicacion;
+    private Post post;
 }

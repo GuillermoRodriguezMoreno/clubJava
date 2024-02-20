@@ -12,22 +12,22 @@ import java.util.HashSet;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name = "usuario")
+@Table(name = "user")
 @Entity
-public class Usuario {
+public class User {
 
-    // Atributos
+    // Props
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
-    private String nombre_usuario;
-    private String contrasena;
-    private String coreo_electronico;
-    private String rol;
-    // Relaciones
-    @OneToMany(mappedBy = "autor")
-    private HashSet<Comentario> comentarios;
-    @OneToMany(mappedBy = "autor")
-    private HashSet<Publicacion> publicaciones;
+    private String username;
+    private String password;
+    private String email;
+    private String role;
+    // Relationships
+    @OneToMany(mappedBy = "author")
+    private HashSet<Comment> comments = new HashSet<>();
+    @OneToMany(mappedBy = "author")
+    private HashSet<Post> posts = new HashSet<>();
 }
