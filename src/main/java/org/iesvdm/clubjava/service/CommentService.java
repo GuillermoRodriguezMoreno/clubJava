@@ -43,8 +43,9 @@ public class CommentService {
         return this.commentRepository.findById(id).map(old -> {
             // Actualizo comentario
             old.setBody(newComment.getBody());
-            // Hago que la fecha del comentario sea la actual
-            old.setCommentDate(new Date());
+            old.setAuthor(newComment.getAuthor());
+            old.setPost(newComment.getPost());
+            old.setCommentDate(newComment.getCommentDate());
             // Guardo comentario
             return this.commentRepository.save(old);
         }).orElseThrow(() -> new EntityNotFoundException(id, Comment.class));

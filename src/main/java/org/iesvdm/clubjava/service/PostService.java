@@ -47,7 +47,8 @@ public class PostService {
             // Actualizo post
             oldPost.setTitle(newPost.getTitle());
             oldPost.setBody(newPost.getBody());
-            oldPost.setPostDate(new Date());
+            oldPost.setPostDate(newPost.getPostDate());
+            oldPost.setAuthor(newPost.getAuthor());
             // Borro los tags del post
             oldPost.getTags().stream().map(tag -> {
                 tag.getPosts().remove(oldPost);
