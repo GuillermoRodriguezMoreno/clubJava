@@ -12,7 +12,7 @@ import java.util.List;
 @Slf4j
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/v1/api/users")
 public class UserController {
 
     // Injects

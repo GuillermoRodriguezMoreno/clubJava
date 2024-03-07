@@ -1,7 +1,7 @@
 TO DO:
+- Terminar las operaciones CRUD de post y comment
 - Insertar Datos
 - Testear controlador
-- Testear update de comentarios y post
 - Mail sender
 - Login
 - Todo el Front
