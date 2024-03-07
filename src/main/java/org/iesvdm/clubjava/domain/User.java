@@ -1,5 +1,6 @@
 package org.iesvdm.clubjava.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,8 +27,10 @@ public class User {
     private String email;
     private String role;
     // Relationships
+    @JsonIgnore
     @OneToMany(mappedBy = "author")
     private HashSet<Comment> comments = new HashSet<>();
+    @JsonIgnore
     @OneToMany(mappedBy = "author")
     private HashSet<Post> posts = new HashSet<>();
 }

@@ -24,7 +24,7 @@ public class Tag {
     private Long id;
     private String name;
     // Relationships
-    @ManyToMany(mappedBy = "tags")
     @JsonIgnore
+    @ManyToMany(mappedBy = "tags")
     private Set<Post> Posts = new HashSet<>();
 }

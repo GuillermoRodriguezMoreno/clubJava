@@ -22,6 +22,7 @@ public class PostController {
     private PostService postService;
 
     /* ******* CRUD *******/
+
     // Get all posts
     @GetMapping(value = {"", "/"}, params = {"!search", "!tag", "!page", "!size"})
     public List<Post> all(){

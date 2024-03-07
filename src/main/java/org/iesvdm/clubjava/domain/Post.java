@@ -30,6 +30,7 @@ public class Post {
     @JsonFormat(pattern = "dd-MM-yyyy",  shape = JsonFormat.Shape.STRING)
     private Date postDate;
     // Relationships
+    @JsonIgnore
     @ManyToOne()
     private User author;
     @OneToMany(mappedBy = "post")
