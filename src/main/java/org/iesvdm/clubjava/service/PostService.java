@@ -101,7 +101,7 @@ public class PostService {
     /* ******** PAGINATION ******** */
 
     public Map<String, Object> allWithPagination(int page, int size){
-        Pageable paginado = PageRequest.of(page, size, Sort.by("name").ascending());
+        Pageable paginado = PageRequest.of(page, size, Sort.by("tittle").ascending());
         Page<Post> pageAll = this.postRepository.findAll(paginado);
         Map<String, Object> response = new HashMap<>();
         response.put("posts", pageAll.getContent());
