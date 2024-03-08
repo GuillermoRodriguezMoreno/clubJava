@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -29,8 +30,8 @@ public class User {
     // Relationships
     @JsonIgnore
     @OneToMany(mappedBy = "author")
-    private HashSet<Comment> comments = new HashSet<>();
+    private Set<Comment> comments = new HashSet<>();
     @JsonIgnore
     @OneToMany(mappedBy = "author")
-    private HashSet<Post> posts = new HashSet<>();
+    private Set<Post> posts = new HashSet<>();
 }
