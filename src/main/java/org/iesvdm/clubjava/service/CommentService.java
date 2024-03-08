@@ -41,10 +41,8 @@ public class CommentService {
     public Comment replace(Long id, Comment newComment) {
         // Busco comentario por id
         return this.commentRepository.findById(id).map(old -> {
-            // Actualizo comentario
+            // Actualizo comentario. Solo editable cuerpo y fecha
             old.setBody(newComment.getBody());
-            old.setAuthor(newComment.getAuthor());
-            old.setPost(newComment.getPost());
             old.setCommentDate(newComment.getCommentDate());
             // Guardo comentario
             return this.commentRepository.save(old);
@@ -63,7 +61,7 @@ public class CommentService {
             this.postRepository.save(comment.getPost());
             this.userRepository.save(comment.getAuthor());
             // Borro comentario
-            this.commentRepository.deleteById(id);
+            this.commentRepository.delete(comment);
             return comment;
         }).orElseThrow(()-> new EntityNotFoundException(id, Comment.class));
     }

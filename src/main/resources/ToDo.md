@@ -1,5 +1,5 @@
 TO DO:
-- Terminar las operaciones CRUD de post y comment
+
 - Insertar Datos
 - Testear controlador
 - Mail sender

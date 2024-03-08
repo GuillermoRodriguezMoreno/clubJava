@@ -50,23 +50,23 @@ public class PostService {
     public Post replace(Long id, Post newPost){
         // Busco post por id
         return this.postRepository.findById(id).map(oldPost -> {
-            // Actualizo post
+            // Actualizo post. Solo editable titulo, cuerpo y fecha
             oldPost.setTitle(newPost.getTitle());
             oldPost.setBody(newPost.getBody());
             oldPost.setPostDate(newPost.getPostDate());
-            oldPost.setAuthor(newPost.getAuthor());
-            // Borro los tags del post
+            // Borro el post en los tags
             oldPost.getTags().stream().map(tag -> {
                 tag.getPosts().remove(oldPost);
                 tagRepository.save(tag);
                 return tag;
             });
-            // Añado los nuevos tags al post
+            // Añado el post a las nuevas tags
             newPost.getTags().stream().map(tag -> {
                 tag.getPosts().add(oldPost);
                 tagRepository.save(tag);
                 return tag;
             });
+            // Actualizo tags
             oldPost.setTags(newPost.getTags());
             // Guardo post
             return this.postRepository.save(oldPost);
@@ -77,10 +77,9 @@ public class PostService {
     public void delete(Long id){
         // Busco post por id
         this.postRepository.findById(id).map(post -> {
-            // Setteo null el post en los comentarios
+            // Borro los comentarios del post
             post.getComments().stream().map(comment -> {
-                comment.setPost(null);
-                commentRepository.save(comment);
+                commentRepository.delete(comment);
                 return comment;
             });
             // Borro el post en los tags
