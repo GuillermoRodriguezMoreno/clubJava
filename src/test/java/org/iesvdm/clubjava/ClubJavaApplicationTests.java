@@ -109,4 +109,6 @@ class ClubJavaApplicationTests {
         this.tagService.save(tag);
         this.tagService.save(tag2);
     }
+
+
 }
