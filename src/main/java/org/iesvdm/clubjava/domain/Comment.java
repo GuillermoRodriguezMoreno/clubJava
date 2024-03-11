@@ -24,7 +24,7 @@ public class Comment {
     private Long id;
     private String body;
     @JsonFormat(pattern = "dd-MM-yyyy-HH:mm",  shape = JsonFormat.Shape.STRING)
-    private Date commentDate;
+    private Date commentDate = new Date();
     // Relationships
     @ManyToOne()
     private User author;

@@ -25,7 +25,7 @@ public class Post {
     private String title;
     private String body;
     @JsonFormat(pattern = "dd-MM-yyyy",  shape = JsonFormat.Shape.STRING)
-    private Date postDate;
+    private Date postDate = new Date();
     // Relationships
     @ManyToOne()
     private User author;
@@ -33,7 +33,7 @@ public class Post {
     @JsonIgnore
     @ToString.Exclude
     private Set<Comment> comments = new HashSet<>();
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.REMOVE,CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "post_tag",
             joinColumns = @JoinColumn(name = "post_id"),
