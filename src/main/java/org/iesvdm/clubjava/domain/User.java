@@ -2,10 +2,7 @@ package org.iesvdm.clubjava.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,10 +25,12 @@ public class User {
     private String email;
     private String role;
     // Relationships
-    @JsonIgnore
     @OneToMany(mappedBy = "author")
+    @JsonIgnore
+    @ToString.Exclude
     private Set<Comment> comments = new HashSet<>();
-    @JsonIgnore
     @OneToMany(mappedBy = "author")
+    @JsonIgnore
+    @ToString.Exclude
     private Set<Post> posts = new HashSet<>();
 }

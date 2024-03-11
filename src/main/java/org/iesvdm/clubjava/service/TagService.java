@@ -49,10 +49,9 @@ public class TagService {
         // Busco tag por id
         this.tagRepository.findById(id).map(tag -> {
             // Borro el tag en los posts
-            tag.getPosts().stream().map(post -> {
+            tag.getPosts().forEach(post -> {
                 post.getTags().remove(tag);
                 postRepository.save(post);
-                return post;
             });
             // Borro tag
             this.tagRepository.delete(tag);

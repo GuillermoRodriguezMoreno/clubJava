@@ -55,16 +55,14 @@ public class PostService {
             oldPost.setBody(newPost.getBody());
             oldPost.setPostDate(newPost.getPostDate());
             // Borro el post en los tags
-            oldPost.getTags().stream().map(tag -> {
+            oldPost.getTags().forEach(tag -> {
                 tag.getPosts().remove(oldPost);
                 tagRepository.save(tag);
-                return tag;
             });
             // Añado el post a las nuevas tags
-            newPost.getTags().stream().map(tag -> {
+            newPost.getTags().forEach(tag -> {
                 tag.getPosts().add(oldPost);
                 tagRepository.save(tag);
-                return tag;
             });
             // Actualizo tags
             oldPost.setTags(newPost.getTags());
@@ -78,15 +76,14 @@ public class PostService {
         // Busco post por id
         this.postRepository.findById(id).map(post -> {
             // Borro los comentarios del post
-            post.getComments().stream().map(comment -> {
-                commentRepository.delete(comment);
-                return comment;
-            });
+            /*
+            * Comentar cosa curiosa de los streams. Fallaba al borrar los comentarios porque el hilo de ejecucion seguia!!
+            * */
+            commentRepository.deleteAll(post.getComments());
             // Borro el post en los tags
-            post.getTags().stream().map(tag -> {
+            post.getTags().forEach(tag -> {
                 tag.getPosts().remove(post);
                 tagRepository.save(tag);
-                return tag;
             });
             // Borro el post en el usuario
             post.getAuthor().getPosts().remove(post);
@@ -100,7 +97,8 @@ public class PostService {
     /* ******** PAGINATION ******** */
 
     public Map<String, Object> allWithPagination(int page, int size){
-        Pageable paginado = PageRequest.of(page, size, Sort.by("tittle").ascending());
+        // Ordano por fecha y titulo
+        Pageable paginado = PageRequest.of(page, size, Sort.by("postDate").ascending().and(Sort.by("title").ascending()));
         Page<Post> pageAll = this.postRepository.findAll(paginado);
         Map<String, Object> response = new HashMap<>();
         response.put("posts", pageAll.getContent());

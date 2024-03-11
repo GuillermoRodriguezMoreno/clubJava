@@ -26,10 +26,8 @@ public class Comment {
     @JsonFormat(pattern = "dd-MM-yyyy-HH:mm",  shape = JsonFormat.Shape.STRING)
     private Date commentDate;
     // Relationships
-    @JsonIgnore
     @ManyToOne()
     private User author;
-    @JsonIgnore
     @ManyToOne()
     private Post post;
 }

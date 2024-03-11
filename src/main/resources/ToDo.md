@@ -1,7 +1,5 @@
 TO DO:
-
-- Insertar Datos
-- Testear controlador
+- Falta el requisito de las otras dependencias
 - Mail sender
 - Login
 - Todo el Front

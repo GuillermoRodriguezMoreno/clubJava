@@ -2,10 +2,7 @@ package org.iesvdm.clubjava.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +22,7 @@ public class Tag {
     private String name;
     // Relationships
     @JsonIgnore
+    @ToString.Exclude
     @ManyToMany(mappedBy = "tags")
     private Set<Post> Posts = new HashSet<>();
 }
