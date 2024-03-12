@@ -20,6 +20,8 @@ public class UserService {
     private PostRepository postRepository;
     @Autowired
     private CommentRepository commentRepository;
+    @Autowired
+    private MailSenderService mailSenderService;
 
     // List all users
     public List<User> all(){
@@ -33,6 +35,8 @@ public class UserService {
 
     // Create a new user
     public User save(User user){
+        // Notificar por email al crear usuario
+        //mailSenderService.notificarPorEmail(user, "Hola " + user.getUsername() + ", bienvenido al Club de Java!");
         return this.userRepository.save(user);
     }
 
