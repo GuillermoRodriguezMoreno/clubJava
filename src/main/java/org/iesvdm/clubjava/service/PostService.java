@@ -77,7 +77,8 @@ public class PostService {
         this.postRepository.findById(id).map(post -> {
             // Borro los comentarios del post
             /*
-            * Comentar cosa curiosa de los streams. Fallaba al borrar los comentarios porque el hilo de ejecucion seguia!!
+            * Comentar cosa curiosa de los streams. Fallaba al borrar
+            * los comentarios porque el hilo de ejecucion seguia!!
             * */
             commentRepository.deleteAll(post.getComments());
             // Borro el post en los tags
@@ -98,7 +99,8 @@ public class PostService {
 
     public Map<String, Object> allWithPagination(int page, int size){
         // Ordano por fecha y titulo
-        Pageable paginado = PageRequest.of(page, size, Sort.by("postDate").ascending().and(Sort.by("title").ascending()));
+        Pageable paginado = PageRequest.of(page, size, Sort.by("postDate").ascending()
+                .and(Sort.by("title").ascending()));
         Page<Post> pageAll = this.postRepository.findAll(paginado);
         Map<String, Object> response = new HashMap<>();
         response.put("posts", pageAll.getContent());
