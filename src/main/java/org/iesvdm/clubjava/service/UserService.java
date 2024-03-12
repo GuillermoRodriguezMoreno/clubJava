@@ -36,7 +36,7 @@ public class UserService {
     // Create a new user
     public User save(User user){
         // Notificar por email al crear usuario
-        //mailSenderService.notificarPorEmail(user, "Hola " + user.getUsername() + ", bienvenido al Club de Java!");
+        mailSenderService.notificarPorEmail(user, "Hola " + user.getUsername() + ", bienvenido al Club de Java!");
         return this.userRepository.save(user);
     }
 
