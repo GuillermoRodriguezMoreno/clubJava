@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS "user" (
 -- Crear la tabla Publicacion
 CREATE TABLE IF NOT EXISTS post (
                                            id INT PRIMARY KEY AUTO_INCREMENT,
-                                           tittle VARCHAR(255) NOT NULL,
+                                           title VARCHAR(255) NOT NULL,
                                            body TEXT NOT NULL,
                                            post_date DATE NOT NULL,
                                            author_id INT,
