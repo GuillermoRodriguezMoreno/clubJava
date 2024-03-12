@@ -56,4 +56,11 @@ public class CommentController {
         log.info("borrando comentario con id: " + id);
         this.commentService.delete(id);
     }
+
+    /* ********* FILTERS ********* */
+    @GetMapping(value = {"", "/"}, params = {"postId"})
+    public List<Comment> allByPostId(@RequestParam Long postId){
+        log.info("accediendo a todos los comentarios del post con id: " + postId);
+        return this.commentService.allByPostId(postId);
+    }
 }

@@ -65,4 +65,9 @@ public class CommentService {
             return comment;
         }).orElseThrow(()-> new EntityNotFoundException(id, Comment.class));
     }
+
+    /* ******* CUSTOM METHODS *******/
+    public List<Comment> allByPostId(Long postId){
+       return this.commentRepository.findAllByPostIdOrderByCommentDate(postId);
+    }
 }
