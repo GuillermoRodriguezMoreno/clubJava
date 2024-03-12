@@ -33,7 +33,7 @@ public class Post {
     @JsonIgnore
     @ToString.Exclude
     private Set<Comment> comments = new HashSet<>();
-    @ManyToMany(cascade = {CascadeType.REMOVE,CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "post_tag",
             joinColumns = @JoinColumn(name = "post_id"),
