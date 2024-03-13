@@ -23,6 +23,8 @@ public class Post {
     @EqualsAndHashCode.Include
     private Long id;
     private String title;
+    @Lob // Esto es para ajustar el tamaño del campo en la base de datos
+    @Column(length = 10000) // Esto es para ajustar el tamaño del campo en la base de datos
     private String body;
     @JsonFormat(pattern = "dd-MM-yyyy",  shape = JsonFormat.Shape.STRING)
     private Date postDate = new Date();
